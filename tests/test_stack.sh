@@ -52,17 +52,17 @@ check_and_exit() {
 }
 
 # ----------------------------------------------------------------------------
-# Run [eris chains make] tests
+# Run [eris packages do] tests
 
-time tests/test_chains_make.sh
+time tests/test_jobs.sh
 test_exit=$?
 check_and_exit
 cd $start
 
 # ----------------------------------------------------------------------------
-# Run [eris packages do] tests
+# Run [eris chains make] tests
 
-time tests/test_jobs.sh
+time tests/test_chains_make.sh
 test_exit=$?
 check_and_exit
 cd $start
