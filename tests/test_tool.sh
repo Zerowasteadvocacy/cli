@@ -75,11 +75,6 @@ connect(){
 }
 
 setup() {
-  if [[ "$machine" == eris-test-win* ]]
-  then
-    mkdir $HOME/.eris
-    touch $HOME/.eris/eris.toml
-  fi
 
   echo "Checking the Host <-> Docker Connection"
   if [ $? -ne 0 ] && [ -z $1 ]
@@ -217,6 +212,11 @@ flame_out() {
 # ---------------------------------------------------------------------------
 # Go!
 echo "Hello! The marmots will begin testing now."
+
+eris clean --yes --containers --images --scratch
+eris version
+eris init --yes --testing
+
 if [[ "$DOCKER_MACHINE" = true ]]
 then
   announceMachine
