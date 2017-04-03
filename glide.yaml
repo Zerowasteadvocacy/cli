@@ -34,10 +34,12 @@ import:
   - unix
 - package: gopkg.in/yaml.v2
 - package: github.com/monax/compilers
-  version: develop
+  version: hotfix
   subpackages:
   - perform
 - package: github.com/monax/eris-db
+  repo: git@github.com:VoR0220/eris-db
+  version: justVendorInTheDamnDependencies
   subpackages:
   - client
   - client/rpc
