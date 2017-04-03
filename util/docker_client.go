@@ -412,3 +412,20 @@ func DockerError(err error) error {
 	}
 	return err
 }
+
+func DockerWindowsAndMacIP(do *definitions.Do) (string, error) {
+	if runtime.GOOS == "windows" || runtime.GOOS == "darwin" {
+		if os.Getenv("DOCKER_HOST") == "" && os.Getenv("DOCKER_CERT_PATH") == "" {
+			return "127.0.0.1", nil
+		} else {
+			cmd := exec.Command("docker-machine", "ip", do.MachineName)
+			if out, err := cmd.CombinedOutput(); err != nil {
+				return "", fmt.Errorf("%v", DockerError(err))
+			} else {
+				return strings.TrimSpace(string(out)), nil
+			}
+		}
+	} else {
+		return "", fmt.Errorf("Linux machine, should not reach here")
+	}
+}

@@ -88,11 +88,13 @@ func defaultSigner() string {
 
 	cont, err := util.DockerClient.InspectContainer("keys")
 	if err != nil {
-		return nil, util.DockerError(err)
+		util.IfExit(util.DockerError(err))
 	}
 	if runtime.GOOS == "darwin" || runtime.GOOS == "windows" {
-
+		ip, err := util.DockerWindowsAndMacIP(do)
+		util.IfExit(err)
+		return fmt.Sprintf("http://%v:%v", ip, cont.NetworkSettings.Ports[0])
 	} else {
-
+		return fmt.Sprintf("http://%v:%v", cont.NetworkSettings.IPAddress, cont.NetworkSettings.Ports[0])
 	}
 }
