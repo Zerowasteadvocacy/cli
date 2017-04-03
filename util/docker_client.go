@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/monax/cli/definitions"
 	"github.com/monax/cli/log"
 	"github.com/monax/cli/version"
 

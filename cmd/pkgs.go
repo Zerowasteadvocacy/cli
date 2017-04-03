@@ -9,7 +9,9 @@ import (
 	"strconv"
 	"strings"
 
+	//"github.com/monax/cli/definitions"
 	"github.com/monax/cli/pkgs"
+	//"github.com/monax/cli/services"
 	"github.com/monax/cli/util"
 	"github.com/monax/cli/version"
 
@@ -85,16 +87,19 @@ func formCompilers() string {
 }
 
 func defaultSigner() string {
-
+	/*doKeys := definitions.NowDo()
+	doKeys.Name = "keys"
+	util.IfExit(services.EnsureRunning(doKeys))
 	cont, err := util.DockerClient.InspectContainer("keys")
 	if err != nil {
 		util.IfExit(util.DockerError(err))
-	}
+	}*/
 	if runtime.GOOS == "darwin" || runtime.GOOS == "windows" {
 		ip, err := util.DockerWindowsAndMacIP(do)
 		util.IfExit(err)
-		return fmt.Sprintf("http://%v:%v", ip, cont.NetworkSettings.Ports[0])
+		return fmt.Sprintf("http://%v:%v", ip, 4767)
+
 	} else {
-		return fmt.Sprintf("http://%v:%v", cont.NetworkSettings.IPAddress, cont.NetworkSettings.Ports[0])
+		return "http://172.17.0.2:4767"
 	}
 }
