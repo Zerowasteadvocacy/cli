@@ -85,9 +85,14 @@ func formCompilers() string {
 }
 
 func defaultSigner() string {
+
+	cont, err := util.DockerClient.InspectContainer("keys")
+	if err != nil {
+		return nil, util.DockerError(err)
+	}
 	if runtime.GOOS == "darwin" || runtime.GOOS == "windows" {
-		return "http://0.0.0.0:4767"
+
 	} else {
-		return "http://172.17.0.2:4767"
+
 	}
 }
