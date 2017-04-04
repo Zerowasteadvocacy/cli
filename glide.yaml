@@ -15,6 +15,7 @@ import:
   subpackages:
   - accounts/abi
   - common
+  - common/math
 - package: github.com/fsouza/go-dockerclient
 - package: github.com/kr/text
   subpackages:

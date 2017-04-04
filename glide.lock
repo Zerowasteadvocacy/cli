@@ -87,10 +87,11 @@ imports:
   - util/slice
   - word256
 - name: github.com/ethereum/go-ethereum
-  version: bdef758d5c6d397584d0c35e53d6f6c318e61351
+  version: e50a5b77712d891ff409aa942a5cbc24e721b33
   subpackages:
   - accounts/abi
   - common
+  - common/math
   - common/hexutil
   - crypto
   - crypto/ecies
